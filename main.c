@@ -63,8 +63,13 @@ int main(int argc, char *argv[]) {
 	bingo_inputNum(selNum);
 	bingo_print();
 	*/
+	bingo_init();
+
+
+	
 	
 	//initialize bingo board
+
 	
 	while(check_gameEnd() == BINGO_RES_UNFINISHED)  // 줄 수가 N_BINGO 보다 작음  
 	{
@@ -81,9 +86,10 @@ int main(int argc, char *argv[]) {
 	   bingo_inputNum(selNum);
     }
 	
+	
 
 	//ending
-	printf("\n\n\n\n\n\n\n\n\n\n");
+	printf("\n\n\n\n\n\n");
 	printf("=====================================\n");
 	printf("*************************************\n");
     printf("           congratulation!!!         \n");
