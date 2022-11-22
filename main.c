@@ -5,7 +5,6 @@
 
 #define BINGO_RES_UNFINISHED -1
 #define BINGO_RES_FINISHED 0
-#define N_LINE 2
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -57,15 +56,8 @@ int main(int argc, char *argv[]) {
 	
 	
 	//game
-	/*
-	bingo_init();
-	bingo_print();
-	bingo_inputNum(selNum);
-	bingo_print();
-	*/
-	bingo_init();
 
-
+	bingo_init();
 	
 	
 	//initialize bingo board
@@ -98,6 +90,7 @@ int main(int argc, char *argv[]) {
 	printf("*************************************\n");
 	printf("=====================================\n\n");
 	
+	bingo_print();
 	
 	return 0;
 }
