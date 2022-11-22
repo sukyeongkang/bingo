@@ -7,6 +7,13 @@
 static int bingoBoard[N_SIZE][N_SIZE];
 static int numberStatus[N_SIZE*N_SIZE];
 
+int bingo_checkNum(int selNum)
+{
+	 if (numberStatus[selNum] == BINGONUM_HOLE)
+	     return BINGO_NUMSTATUS_ABSENT;
+	 
+	 return BINGO_NUMSTATUS_PRESENT;
+}
 
 void bingo_init(void) //형상만 생각
 {
@@ -58,6 +65,7 @@ void bingo_print(void)
 void bingo_inputNum(int sel)
 {
 	
+
 }
 
 int bingo_countCompletedLine(void) //완성딘 줄 수 계산  
