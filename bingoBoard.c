@@ -2,7 +2,8 @@
 #include "bingoBoard.h"
 
 #define BINGONUM_HOLE 0//내가 선택한 숫자를 구분짓는 용도 
-
+#define BINGO_RES_UNFINISHED
+#define BINGO_RES_FINISHED 0
 
 static int bingoBoard[N_SIZE][N_SIZE];
 static int numberStatus[N_SIZE*N_SIZE];
@@ -64,11 +65,76 @@ void bingo_print(void)
 
 void bingo_inputNum(int sel)
 {
+	int row, col;
+	row = numberStatus[sel - 1]/N_SIZE;
+	col = numberStatus[sel - 1]/N_SIZE;
 	
-
+	bingoBoard[row][col] = BINGONUM_HOLE;
+	numberStatus[sel-1] = BINGONUM_HOLE;
 }
 
 int bingo_countCompletedLine(void) //완성딘 줄 수 계산  
 {
+	int i, j;
+	int cnt = 0;
+	int checkBingo;
 	
+	//check row
+	for (i=0; i<N_SIZE; i++){
+		checkBingo = 1;
+		for ( j=0; j<N_SIZE; j++){
+			if (bingoBoard[i][j]>0){
+			checkBingo = 0;
+			break;
+			}
+	    }
+		if (checkBingo == 1){
+			cnt++;
+		}
+		
+    }
+    
+    //check col
+    for (j=0; j<N_SIZE; j++){
+		checkBingo = 1;
+		for ( i=0; i<N_SIZE; i++){
+			if (bingoBoard[i][j]>0){
+			checkBingo = 0;
+			break;
+			}
+	    }
+		if (checkBingo == 1){
+			cnt++;
+		}
+		
+    }
+    
+    //diagnol
+    checkBingo =1;
+    for(i=0;i<N_SIZE;i++)
+    {
+    	if (bingoBoard[i][j]>0)
+    	{
+    		checkBingo = 0;
+    		break;
+    		
+		}
+	}
+	if (checkBingo ==1)
+	   cnt++;
+	   
+	   
+	checkBingo =1;
+	for(i=0; i<N_SIZE;i++)
+	{
+		if (bingoBoard[i][N_SIZE-i-1]>0)
+		{
+			checkBingo=0;
+			break;
+		}
+	}
+	if (checkBingo ==1)
+	   cnt++;
+	   
+	return cnt;
 }

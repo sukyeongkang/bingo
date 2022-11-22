@@ -3,7 +3,20 @@
 #include <time.h>
 #include "bingoBoard.h"
 
+#define BINGO_RES_UNFINISHED -1
+#define BINGO_RES_FINISHED 0
+#define N_LINE 2
+
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int check_gameEnd(void)
+{
+	int res = BINGO_RES_UNFINISHED;
+	if(bingo_countCompletedLine()>= N_LINE)
+	   res  = BINGO_RES_FINISHED;
+	   
+	return res;
+}
 
 int get_number(void)
 {
@@ -27,6 +40,8 @@ int get_number(void)
 
 
 
+
+
 int main(int argc, char *argv[]) {
 	
 	int selNum;
@@ -42,25 +57,31 @@ int main(int argc, char *argv[]) {
 	
 	
 	//game
+	/*
 	bingo_init();
 	bingo_print();
 	bingo_inputNum(selNum);
 	bingo_print();
-	
-	//initialize bingo board
-	/*
-	while(game is not end)  // 줄 수가 N_BINGO 보다 작음  
-	{
-	   //bingo board print
-	   .
-	   //print np. of completed line  
-	   .
-	   //selct a number
-	   .
-	   //update the board status
-    }
 	*/
 	
+	//initialize bingo board
+	
+	while(check_gameEnd() == BINGO_RES_UNFINISHED)  // 줄 수가 N_BINGO 보다 작음  
+	{
+	   //bingo board print
+	   bingo_print();
+	   
+	   //print np. of completed line  
+	   printf("NO. of completed line : %i\n", bingo_countCompletedLine());
+	   
+	   //selct a number
+	   selNum = get_number();
+	   
+	   //update the board status
+	   bingo_inputNum(selNum);
+    }
+	
+
 	//ending
 	printf("\n\n\n\n\n\n\n\n\n\n");
 	printf("=====================================\n");
